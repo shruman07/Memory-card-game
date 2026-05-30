@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}  
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-image: url(https://static.vecteezy.com/system/resources/previews/036/192/615/large_2x/pink-fairytale-sky-background-with-stars-and-rainbow-white-and-pastel-color-clouds-for-imaginary-world-vector.jpg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #374151;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.game-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #e5e7eb;
+}
+
+.game-header h1 {
+  font-size: 2.5rem;
+  color: #111827;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.stats {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+}
+
+.stat-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #f496c6; 
+}
+
+.reset-btn {
+  background: #bf84e9;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.reset-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+}
+
+.win-message {
+  background: #ffffff;
+  padding: 30px 50px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.win-message h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.win-message p {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.card {
+  aspect-ratio: 1;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backface-visibility: hidden;
+  transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s ease;
+}
+
+.card-front {
+  background: #f5f6f8;
+  color: #000000;
+  font-weight: bold;
+  font-size: 2.8rem;
+  z-index: 1;
+  border: 2px solid #e5e7eb;
+}
+
+.card-back {
+  background: #ffffff;
+  font-size: 3.5rem;
+  z-index: 0;
+  border: 2px solid #e5e7eb;
+}
+
+.card.flipped .card-front {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+.card.flipped .card-back {
+  opacity: 1;
+}
+
+.card.matched {
+  pointer-events: none;
+}
+
+.card.matched .card-back {
+  background: rgba(255, 192, 203, 0.25); /* baby pink fill */
+  border: 2px solid rgba(255, 192, 203, 0.8);
+  box-shadow: 0 0 25px rgba(255, 182, 193, 0.7); /* baby pink glow */
+  animation: babyPinkPulse 1.5s infinite alternate;
+}
+
+@keyframes babyPinkPulse {
+  from {
+    box-shadow: 0 0 15px rgba(237, 181, 190, 0.4);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
+  }
+}
+
+
+.card:hover:not(.matched):not(.flipped) .card-front {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card:active:not(.matched) {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 2rem;
+  }
+
+  .cards-grid {
+    gap: 10px;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 2.5rem;
+  }
+
+  .card-back {
+    font-size: 3rem;
+  }
+
+  .stats {
+    gap: 20px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-header {
+    padding: 20px;
+  }
+
+  .game-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 2rem;
+  }
+
+  .card-back {
+    font-size: 2.5rem;
+  }
+}
