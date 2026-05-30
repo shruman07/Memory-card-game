@@ -6,10 +6,6 @@ A fun and interactive Memory Card Game built using React. Players flip cards and
 
 🔗 memory-card-game-nine-black.vercel.app
 
-## 📸 Preview
-
-Add screenshots or GIFs of your project here.
-
 ## ✨ Features
 
 * 🎮 Interactive card-flipping gameplay
